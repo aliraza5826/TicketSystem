@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Tickets</h1>
+    {% if tickets %}
+        {% for ticket_id, ticket in tickets.items() %}
+            <div class="ticket">
+                <h2><a href="{{ url_for('view_ticket', ticket_id=ticket_id) }}">Ticket #{{ ticket_id }}</a></h2>
+                <p><strong>Subject:</strong> {{ ticket.subject }}</p>
+                <p><strong>Status:</strong> {{ ticket.status }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No tickets available.</p>
+    {% endif %}
+{% endblock %}
